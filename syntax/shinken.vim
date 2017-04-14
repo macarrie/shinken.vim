@@ -48,6 +48,7 @@ syntax keyword  shinkenDaemon contained
 syntax keyword  shinkenOtherObjects contained
             \ module
             \ source
+            \ realm
 
 syntax match    shinkenObjectKeyBlock
             \ "^[ \t]\+\h\+[ \t]\+"
@@ -196,6 +197,7 @@ syntax keyword  shinkenOtherKeys
             \ module_type
             \ order
             \ source_name
+            \ realm_name
 
 syntax match    shinkenComment "#.*"
 syntax match    shinkenComment ";.*$"
