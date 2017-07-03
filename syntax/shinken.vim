@@ -70,6 +70,7 @@ syntax keyword  shinkenObjectKey contained
             \ check_running_timeout
             \ command_line
             \ command_name
+            \ contactgroups
             \ contact_groups
             \ contact_name
             \ contactgroup_name
