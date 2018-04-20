@@ -56,9 +56,22 @@ syntax match    shinkenObjectKeyBlock
             \ transparent
 
 syntax keyword  shinkenObjectKey contained
+            \ acl_force_result_check
+            \ acl_force_retry_check
+            \ acl_in_tab_history
+            \ acl_make_acknowledge
+            \ acl_make_downtime
+            \ acl_share_everybody
+            \ acl_share_group
+            \ acl_share_private
+            \ acl_show_history_range
+            \ acl_show_sla_range
+            \ acl_try_check_on_poller
+            \ acl_try_check_on_synchronizer
             \ active_checks_enabled
             \ address
             \ aggregation
+            \ apply_on_type
             \ business_impact
             \ business_impact_modulation_name
             \ business_impact_modulations
@@ -70,11 +83,12 @@ syntax keyword  shinkenObjectKey contained
             \ check_running_timeout
             \ command_line
             \ command_name
-            \ contactgroups
             \ contact_groups
             \ contact_name
             \ contactgroup_name
+            \ contactgroups
             \ contacts
+            \ default_submit_to_staging
             \ default_value
             \ definition_order
             \ display_name
@@ -118,6 +132,7 @@ syntax keyword  shinkenObjectKey contained
             \ modulation_period
             \ monday
             \ name
+            \ notes_multi_url
             \ notes_url
             \ notification_contact_groups
             \ notification_contacts
@@ -149,6 +164,7 @@ syntax keyword  shinkenObjectKey contained
             \ service_notification_period
             \ service_notifications_enabled
             \ sunday
+            \ synchronizer_internal_description
             \ template_members
             \ thursday
             \ timeout
@@ -157,6 +173,7 @@ syntax keyword  shinkenObjectKey contained
             \ use
             \ view_contact_groups
             \ view_contacts
+            \ warning_threshold_cpu_usage
             \ wednesday
 
 syntax keyword  shinkenDaemonConfKey
