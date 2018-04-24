@@ -13,14 +13,37 @@ let s:cpo_save = &cpo
 set cpo&vim
 
 
-" Groups detection
+" Cfg syntax
+""""""""""""""""""""""""""""""
+syntax match cfgKey ".*="me=e-1
 
-syntax match  shinkenDefineBlock       "^define.*"
+highlight link cfgKey Keyword
+
+
+" Shinken objects syntax
+""""""""""""""""""""""""""""""
+syntax match    shinkenObjectPropertyDefinition "^\s*\zs\h\+\ze\s\+.\+"
+            \ contained
+            \ contains=shinkenObjectKey,shinkenDaemonConfKey,shinkenOtherKeys
+
+syntax match    shinkenMacro    "$\w\+\$"
+syntax match    shinkenData     "^\s*\zs_\h\+\ze"
+
+syntax match    shinkenComment "^\s*#.*"
+syntax match    shinkenComment ";.*$" contained
+syntax match    shinkenComment "^\s*_SE_UUID.*" contained
+
+syntax region   shinkenString   start=+"+ end=+"+ contains=shinkenMacro
+
+syntax match    shinkenDefine       "^define\s*\h\+"
             \ contains=shinkenDaemon,shinkenObjectType,shinkenDefine,shinkenOtherObjects
-            \ transparent
 
-syntax keyword  shinkenDefine       contained
-            \ define
+syntax region   shinkenDefinitionBlock
+            \ start=/define.*{/hs=e+1
+            \ end=/}/
+            \ contains=shinkenDefine,shinkenObjectPropertyDefinition,shinkenData,shinkenComment
+            \ transparent
+            \ fold
 
 syntax keyword  shinkenObjectType contained
             \ businessimpactmodulation
@@ -45,15 +68,10 @@ syntax keyword  shinkenDaemon contained
             \ scheduler
             \ synchronizer
 
-syntax keyword  shinkenOtherObjects contained
+syntax keyword  shinkenOtherObjectsTypes contained
             \ module
             \ source
             \ realm
-
-syntax match    shinkenObjectKeyBlock
-            \ "^[ \t]\+\h\+[ \t]\+"
-            \ contains=shinkenObjectKey,shinkenDaemonConfKey,shinkenMacro,shinkenData,shinkenOtherKeys
-            \ transparent
 
 syntax keyword  shinkenObjectKey contained
             \ acl_force_result_check
@@ -176,7 +194,7 @@ syntax keyword  shinkenObjectKey contained
             \ warning_threshold_cpu_usage
             \ wednesday
 
-syntax keyword  shinkenDaemonConfKey
+syntax keyword  shinkenDaemonConfKey contained
             \ address
             \ arbiter_name
             \ broker_name
@@ -217,28 +235,20 @@ syntax keyword  shinkenOtherKeys
             \ source_name
             \ realm_name
 
-syntax match    shinkenComment "#.*"
-syntax match    shinkenComment ";.*$"
-syntax match    shinkenComment "^[\t ]\+_SE_UUID.*"
-
-syntax match    shinkenMacro    "$\w\+\$"
-syntax match    shinkenData     "^[ \t]\+\zs_\h\+\ze"
-
-syntax match    shinkenString   '"[^"]*"'
-
-
 " Highlighting
-highlight link shinkenDefine        Operator
-highlight link shinkenObjectType    Function
-highlight link shinkenDaemon        Function
-highlight link shinkenOtherObjects  Function
-highlight link shinkenObjectKey     Identifier
-highlight link shinkenDaemonConfKey Identifier
-highlight link shinkenOtherKeys     Identifier
-highlight link shinkenComment       Comment
-highlight link shinkenMacro         Macro
-highlight link shinkenData          Macro
-highlight link shinkenString        String
+highlight  link  shinkenDefine         Operator
+highlight  link  shinkenObjectType     Function
+highlight  link  shinkenDaemon         Function
+highlight  link  shinkenObjectType     Function
+
+highlight  link  shinkenObjectKey      Identifier
+highlight  link  shinkenDaemonConfKey  Identifier
+highlight  link  shinkenOtherKeys      Identifier
+
+highlight  link  shinkenComment        Comment
+highlight  link  shinkenMacro          Macro
+highlight  link  shinkenData           Macro
+highlight  link  shinkenString         String
 
 
 let &cpo = s:cpo_save

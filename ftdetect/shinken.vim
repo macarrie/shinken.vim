@@ -8,3 +8,6 @@ autocmd BufRead,BufNewFile */*nagios*/*/*.cfg                 set filetype=shink
 autocmd BufRead,BufNewFile /*etc/nagios/*.cfg                 set filetype=shinken
 autocmd BufRead,BufNewFile *groundwork/nagios/etc/*.cfg{,.in} set filetype=shinken
 autocmd BufRead,BufNewFile /var/lib/nagios/objects.cache      set filetype=shinken
+
+" Completion
+autocmd Filetype shinken setlocal omnifunc=syntaxcomplete#Complete
