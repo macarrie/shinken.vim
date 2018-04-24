@@ -22,7 +22,7 @@ highlight link cfgKey Keyword
 
 " Shinken objects syntax
 """"""""""""""""""""""""""""""
-syntax match    shinkenObjectPropertyDefinition "^\s*\zs\h\+\ze\s\+.\+"
+syntax match    shinkenObjectPropertyDefinition "^\s*\zs\h\+\ze\s*.\+"
             \ contained
             \ contains=shinkenObjectKey,shinkenDaemonConfKey,shinkenOtherKeys
 
